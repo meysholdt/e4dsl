@@ -8,7 +8,6 @@ import org.eclipse.e4.ui.model.workbench.scoping.NamespaceAwareScopeProvider;
 import org.eclipse.e4.ui.model.workbench.scoping.TextualWorkbenchGlobalScopeProvider;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
-import org.eclipse.xtext.parsetree.reconstr.IParseTreeConstructor;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 import org.eclipse.xtext.scoping.IScopeProvider;
 
@@ -43,8 +42,4 @@ public class TextualWorkbenchRuntimeModule extends
 				.to(NamespaceAwareScopeProvider.class);
 	}
 
-	@Override
-	public Class<? extends IParseTreeConstructor> bindIParseTreeConstructor() {
-		return FixedParseTreeConstructor.class;
-	}
 }

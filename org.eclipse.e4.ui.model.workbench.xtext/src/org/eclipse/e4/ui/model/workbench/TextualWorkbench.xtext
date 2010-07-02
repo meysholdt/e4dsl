@@ -3,9 +3,9 @@ grammar org.eclipse.e4.ui.model.workbench.TextualWorkbench with org.eclipse.xtex
 
 //generate e4WorkbenchXtext "http://www.eclips.org/e4/workbenchXtext"
 
-import "platform:/resource/org.eclipse.e4.ui.model.workbench.xtextmodel/model/TextualWorkbench.ecore"
+import "platform:/resource/org.eclipse.e4.ui.model.workbench.xtext/src/org/eclipse/e4/ui/model/workbench/TextualWorkbench.ecore"
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
-import "platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore" as javaTypes
+import "http://www.eclipse.org/xtext/common/JavaVMTypes" as javaTypes
 
 Application returns Application:
 	{Application}

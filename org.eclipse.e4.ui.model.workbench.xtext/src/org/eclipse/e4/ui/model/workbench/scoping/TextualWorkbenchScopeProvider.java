@@ -5,7 +5,7 @@ package org.eclipse.e4.ui.model.workbench.scoping;
 
 import java.util.Set;
 
-import org.eclipse.e4.ui.model.application.MApplicationPackage;
+import org.eclipse.e4.ui.model.application.impl.ApplicationPackageImpl;
 import org.eclipse.e4.ui.model.workbench.e4WorkbenchXtext.ApplicationElement;
 import org.eclipse.e4.ui.model.workbench.e4WorkbenchXtext.E4WorkbenchXtextPackage;
 import org.eclipse.e4.ui.model.workbench.e4WorkbenchXtext.GenericValue;
@@ -45,8 +45,8 @@ public class TextualWorkbenchScopeProvider extends
 	private EClass getTargetEClass(ApplicationElement context) {
 		if (context.getGenericType() != null)
 			return context.getGenericType();
-		EClassifier cls = MApplicationPackage.eINSTANCE.getEClassifier(context
-				.eClass().getName());
+		EClassifier cls = ApplicationPackageImpl.eINSTANCE
+				.getEClassifier(context.eClass().getName());
 		if (cls instanceof EClass)
 			return (EClass) cls;
 		return null;
@@ -116,9 +116,8 @@ public class TextualWorkbenchScopeProvider extends
 												baseClass.getName())
 												&& s.getEPackage()
 														.getNsURI()
-														.equals(
-																s.getEPackage()
-																		.getNsURI()))
+														.equals(s.getEPackage()
+																.getNsURI()))
 											return true;
 								return false;
 							}
@@ -136,6 +135,11 @@ public class TextualWorkbenchScopeProvider extends
 			public IEObjectDescription getContentByEObject(EObject object) {
 				return scope.getContentByEObject(object);
 			}
+
+			public Iterable<IEObjectDescription> getAllContentsByEObject(
+					EObject object) {
+				return scope.getAllContentsByEObject(object);
+			}
 		};
 	}
 
@@ -149,8 +153,8 @@ public class TextualWorkbenchScopeProvider extends
 		EReference ref = (EReference) gv.getFeature();
 		if (ref.isContainment())
 			return IScope.NULLSCOPE;
-		if (ref.getEType().getEPackage().getNsURI().equals(
-				MApplicationPackage.eNS_URI)) {
+		if (ref.getEType().getEPackage().getNsURI()
+				.equals(ApplicationPackageImpl.eNS_URI)) {
 			EReference ref2 = EcoreFactory.eINSTANCE.createEReference();
 			ref2.setContainment(false);
 			ref2.setEType(E4WorkbenchXtextPackage.eINSTANCE.getEClassifier(ref

@@ -8,12 +8,14 @@ var grammarURI = "classpath:/org/eclipse/e4/ui/model/workbench/TextualWorkbench.
 var file.extensions = "e4text"
 var projectName = "org.eclipse.e4.ui.model.workbench.xtext"
 var runtimeProject = "../${projectName}"
+var textualWorkbenchEcore = "${runtimeProject}/src/org/eclipse/e4/ui/model/workbench/TextualWorkbench.ecore"
 
 Workflow {
 	bean = StandaloneSetup {
 		platformUri = "${runtimeProject}/.."
 		registerGeneratedEPackage = "org.eclipse.xtext.common.types.TypesPackage"
-		registerGeneratedEPackage = "org.eclipse.e4.ui.model.workbench.e4WorkbenchXtext.E4WorkbenchXtextPackage"
+//		registerGeneratedEPackage = "org.eclipse.e4.ui.model.workbench.e4WorkbenchXtext.E4WorkbenchXtextPackage"
+		registerEcoreFile = textualWorkbenchEcore
 	}
 	
 	component = DirectoryCleaner {
@@ -22,6 +24,18 @@ Workflow {
 	
 	component = DirectoryCleaner {
 		directory = "${runtimeProject}.ui/src-gen"
+	}
+	
+	component = EcoreGenerator {
+		ecorePackage = { ecore=textualWorkbenchEcore fileExt=file.extensions }
+		genModels = "classpath:/model/JavaVMTypes.genmodel"
+		basePackage = "org.eclipse.e4.ui.model.workbench"
+		modelName = "e4WorkbenchXtext"
+		javaPath = "/${projectName}/src-gen"
+		pluginName = projectName
+		generateEdit = true
+		editPluginID = "${projectName}.ui"
+		editDirectory = "/${projectName}.ui/src-gen"
 	}
 	
 	component = Generator {
