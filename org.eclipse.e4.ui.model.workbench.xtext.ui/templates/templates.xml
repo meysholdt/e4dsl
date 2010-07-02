@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+	<template autoinsert="true"
+		id="org.eclipse.e4.ui.model.workbench.TextualWorkbench.Command1"
+		context="org.eclipse.e4.ui.model.workbench.TextualWorkbench.Command"
+		deleted="false" description="Insert a short command" enabled="true"
+		name="commandShort">command ${id} "${label}";</template>
+	<template autoinsert="true"
+		id="org.eclipse.e4.ui.model.workbench.TextualWorkbench.Command2"
+		context="org.eclipse.e4.ui.model.workbench.TextualWorkbench.Command"
+		deleted="false" description="Insert a Command with a Handler and a Key-Binding"
+		enabled="true" name="commandLong">command ${id} "${label}" for ${handler:CrossReference('Handler.URIRef')} binds &lt;${binding}&gt;;
+	</template>
+</templates>
